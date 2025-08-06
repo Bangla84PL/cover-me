@@ -10,10 +10,11 @@ export async function POST(request: NextRequest) {
     const file = formData.get('file') as File
     const email = formData.get('email') as string
     const jobUrl = formData.get('jobUrl') as string
+    const language = formData.get('language') as string
 
-    if (!file || !email || !jobUrl) {
+    if (!file || !email || !jobUrl || !language) {
       return NextResponse.json(
-        { error: 'File, email, and job URL are required' },
+        { error: 'File, email, job URL, and language are required' },
         { status: 400 }
       )
     }
@@ -69,6 +70,7 @@ export async function POST(request: NextRequest) {
         file_path: filePath,
         file_size: file.size,
         file_type: file.type,
+        language: language,
         uploaded_at: new Date().toISOString()
       })
       .select()
@@ -91,6 +93,7 @@ export async function POST(request: NextRequest) {
       fileId,
       email,
       jobUrl,
+      language,
       fileName: file.name,
       filePath,
       fileSize: file.size
