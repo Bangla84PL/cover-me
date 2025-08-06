@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Select } from "@/components/ui/select"
 
 export default function Home() {
   const [step, setStep] = useState<'hero' | 'form' | 'generating' | 'result'>('hero')
@@ -269,16 +269,16 @@ Thank you for using our service!`)
               {/* Language Selector */}
               <div className="space-y-2">
                 <Label htmlFor="language">Cover Letter Language *</Label>
-                <Select value={language} onValueChange={setLanguage}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select language for your cover letter" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="english">🇺🇸 English</SelectItem>
-                    <SelectItem value="polish">🇵🇱 Polski</SelectItem>
-                    <SelectItem value="spanish">🇪🇸 Español</SelectItem>
-                    <SelectItem value="chinese">🇨🇳 中文</SelectItem>
-                  </SelectContent>
+                <Select
+                  id="language"
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                  placeholder="Select language for your cover letter"
+                >
+                  <option value="english">🇺🇸 English</option>
+                  <option value="polish">🇵🇱 Polski</option>
+                  <option value="spanish">🇪🇸 Español</option>
+                  <option value="chinese">🇨🇳 中文</option>
                 </Select>
               </div>
 
