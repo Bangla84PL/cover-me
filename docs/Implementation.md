@@ -1,198 +1,200 @@
-# Implementation Plan for LLM Hardware Calculator
+# Implementation Plan for Cover Letter Generator
 
 ## Feature Analysis
 
 ### Identified Features:
 
-#### Must-Have Features (MVP):
-1. **Model Selection Dropdown** - 5 popular models (Llama 7B, 13B, 70B, Mistral 7B, CodeLlama 34B)
-2. **Quantization Selection** - Radio buttons for Q4, Q8, FP16 options
-3. **Performance Target** - Slider for tokens/second (5-50 range)
-4. **Budget Input** - Input field for budget limit filtering
-5. **Hardware Requirements Display** - Shows RAM required, VRAM required
-6. **GPU Recommendations** - List 3-5 specific GPU models with specs
-7. **Performance Estimates** - Expected tokens/second for each GPU
-8. **Cost Estimates** - Static pricing for recommended GPUs
-9. **VPS Alternative** - Show 2-3 VPS options with monthly costs
-10. **Budget Filtering** - Show only options under user's budget
+**Core AI Features:**
+- CV content analysis and skill extraction from PDF/image uploads
+- Job posting URL content extraction and parsing
+- AI-powered cover letter generation using Claude API
+- Professional formatting and structure optimization
 
-#### Should-Have Features (Future):
-- Real-time pricing updates
-- Mobile optimization
-- Advanced filtering options
-- More than 5 models
-- Community features
+**File Management:**
+- PDF and image (JPG, PNG) file upload with validation
+- OCR processing for image-based CVs
+- Secure file storage in Supabase buckets
+- Download functionality for generated cover letters
+- User history and generation management
 
-#### Nice-to-Have Features (Later):
-- User accounts
-- Saved configurations
-- Comparison tools
-- Performance benchmarks
+**User Authentication & Management:**
+- Secure user accounts with email/password and OAuth options
+- Session management and data privacy
+- User dashboard for managing generations
+- Freemium model with usage limits
+
+**Automation & Integration:**
+- n8n webhook integration for processing workflows
+- Claude API integration for AI generation
+- Support for major job boards (LinkedIn, Indeed, company sites)
+- Real-time progress indicators
 
 ### Feature Categorization:
 
-- **Must-Have Features:** Model selection, quantization options, performance targets, hardware recommendations, cost estimates, VPS alternatives, budget filtering
-- **Should-Have Features:** Real-time pricing, mobile optimization, extended model library
-- **Nice-to-Have Features:** User accounts, advanced features, community tools
+**Must-Have Features (MVP):**
+- CV Upload System (PDF/image with OCR)
+- Job URL Input and content extraction
+- AI Cover Letter Generation via Claude API
+- File Management and download functionality
+- User Authentication system
+- Basic n8n webhook integration
+
+**Should-Have Features (Phase 2):**
+- Cover Letter Customization and manual editing
+- Enhanced Analytics and usage dashboard
+- Bulk Processing for multiple applications
+- Template selection and tone adjustment
+- Advanced error handling and validation
+
+**Nice-to-Have Features (Future):**
+- Direct job board integrations
+- Email sending capabilities
+- Industry-specific optimization
+- A/B testing for different approaches
+- Success rate predictions and analytics
 
 ## Recommended Tech Stack
 
 ### Frontend:
-- **Framework:** Next.js 15 (App Router) - Perfect for static site generation with excellent performance and SEO
-- **Documentation:** [Next.js Documentation](https://nextjs.org/docs)
+- **Framework:** Next.js 15 - Latest version with App Router, React Server Components, and improved performance
+- **Documentation:** [Next.js 15 Documentation](https://nextjs.org/docs)
 
 ### Styling & UI:
-- **CSS Framework:** Tailwind CSS v4 - Utility-first CSS for rapid development and minimal bundle size
-- **Documentation:** [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- **Component Library:** shadcn/ui - High-quality, customizable React components with excellent TypeScript support
-- **Documentation:** [shadcn/ui Documentation](https://ui.shadcn.com)
+- **CSS Framework:** TailwindCSS v4 - New inline theming approach, no config file needed
+- **Documentation:** [TailwindCSS v4 Documentation](https://tailwindcss.com/docs)
+- **Component Library:** shadcn/ui - Copy-paste component library with excellent TypeScript support
+- **Documentation:** [shadcn/ui Documentation](https://ui.shadcn.com/)
 
-### Language & Type Safety:
-- **Language:** TypeScript - Type safety and excellent developer experience
-- **Documentation:** [TypeScript Documentation](https://www.typescriptlang.org/docs)
+### Backend & Database:
+- **Backend Service:** Supabase - PostgreSQL database, authentication, real-time, and storage
+- **Documentation:** [Supabase Documentation](https://supabase.com/docs)
+- **Authentication:** Supabase Auth with Row Level Security (RLS)
+- **File Storage:** Supabase Storage with bucket policies
 
-### Data & State Management:
-- **Data Storage:** Static JSON files - Perfect for MVP with weekly manual updates
-- **State Management:** React hooks (useState, useContext) - Simple state management for calculator logic
-- **Form Handling:** React Hook Form + Zod - Type-safe form validation
-- **Documentation:** [React Hook Form](https://react-hook-form.com) | [Zod](https://zod.dev)
+### AI & Automation:
+- **AI Processing:** Claude API (Anthropic) - Advanced language model for content generation
+- **Documentation:** [Claude API Documentation](https://docs.anthropic.com/claude/reference)
+- **Workflow Automation:** n8n - Open-source workflow automation for CV processing and job extraction
+- **Documentation:** [n8n Documentation](https://docs.n8n.io/)
 
-### Development & Build Tools:
-- **Package Manager:** pnpm - Fast, efficient package management
-- **Linting:** ESLint + Prettier - Code quality and formatting
-- **Testing:** Vitest - Fast unit testing framework
-- **Documentation:** [Vitest Documentation](https://vitest.dev)
-
-### Deployment:
-- **Hosting:** Vercel - Seamless Next.js deployment with edge functions
+### Development Tools:
+- **Language:** TypeScript - Type safety across frontend and backend
+- **Package Manager:** pnpm - Fast, disk space efficient package manager
+- **Deployment:** Vercel - Optimal for Next.js applications
 - **Documentation:** [Vercel Documentation](https://vercel.com/docs)
 
 ## Implementation Stages
 
 ### Stage 1: Foundation & Setup
-**Duration:** 2-3 days
+**Duration:** 2-3 weeks  
 **Dependencies:** None
 
 #### Sub-steps:
-- [ ] Initialize Next.js 15 project with TypeScript and App Router
-- [ ] Configure Tailwind CSS v4 with custom theme variables
-- [ ] Setup shadcn/ui with project configuration
-- [ ] Install and configure development tools (ESLint, Prettier, Vitest)
-- [ ] Create basic project folder structure following Next.js conventions
-- [ ] Setup TypeScript configuration with path mapping
-- [ ] Configure package.json scripts for development and deployment
-- [ ] Create basic layout components and design system foundations
-- [ ] Setup responsive design breakpoints and design tokens
-- [ ] Initialize Git repository and setup deployment pipeline
+- [ ] Set up Next.js 15 project with TypeScript and TailwindCSS v4
+- [ ] Configure shadcn/ui component library and design system
+- [ ] Initialize Supabase project and configure environment variables
+- [ ] Set up development database schema for users, files, and generations
+- [ ] Configure basic authentication with Supabase Auth
+- [ ] Set up project structure and folder organization
+- [ ] Configure build tools, ESLint, and development workflow
+- [ ] Set up GitHub repository with CI/CD pipeline basics
+- [ ] Implement basic error handling and logging infrastructure
+- [ ] Create foundational UI components and layout structure
 
-### Stage 2: Core Calculator Logic & UI
-**Duration:** 5-7 days
+### Stage 2: Core Features Implementation
+**Duration:** 4-5 weeks  
 **Dependencies:** Stage 1 completion
 
 #### Sub-steps:
-- [ ] Create static data models for hardware specifications and pricing
-- [ ] Design and implement model selection dropdown component
-- [ ] Build quantization selection radio button group
-- [ ] Create performance target slider with dynamic feedback
-- [ ] Implement budget input field with validation
-- [ ] Develop calculator logic for hardware requirements computation
-- [ ] Create GPU recommendation algorithm based on requirements
-- [ ] Build performance estimation engine for different hardware configurations
-- [ ] Implement responsive grid layout for main calculator interface
-- [ ] Add form validation and error handling
-- [ ] Create loading states and smooth transitions
-- [ ] Implement results display components with clear data visualization
+- [ ] Implement file upload system with drag-and-drop interface
+- [ ] Create CV file validation (PDF/image, size limits, type checking)
+- [ ] Set up Supabase Storage buckets with proper security policies
+- [ ] Implement OCR processing for image-based CV uploads
+- [ ] Build job URL input component with validation
+- [ ] Create URL content extraction logic for major job boards
+- [ ] Set up n8n workflow for CV processing and job data extraction
+- [ ] Implement Claude API integration for cover letter generation
+- [ ] Create cover letter preview and editing interface
+- [ ] Build PDF generation and download functionality
+- [ ] Implement user dashboard for managing generations
+- [ ] Add real-time progress indicators for processing steps
 
-### Stage 3: Data Integration & Cost Calculations
-**Duration:** 3-4 days
+### Stage 3: Advanced Features & Integration
+**Duration:** 3-4 weeks  
 **Dependencies:** Stage 2 completion
 
 #### Sub-steps:
-- [ ] Structure hardware database JSON with GPU specifications and pricing
-- [ ] Implement VPS provider data integration (3-4 providers)
-- [ ] Create cost calculation algorithms for local vs cloud deployment
-- [ ] Build budget filtering system for hardware recommendations
-- [ ] Add comparison features between different hardware options
-- [ ] Implement data validation and error handling for edge cases
-- [ ] Create fallback mechanisms for missing data
-- [ ] Add cost breakdown visualization components
-- [ ] Implement currency formatting and international support
-- [ ] Test accuracy of calculations with real-world scenarios
+- [ ] Implement advanced n8n workflows for different job board sources
+- [ ] Add cover letter customization options (templates, tone adjustment)
+- [ ] Create user generation history and analytics dashboard
+- [ ] Implement bulk processing for multiple job applications
+- [ ] Add enhanced error handling for API failures and edge cases
+- [ ] Create admin dashboard for monitoring usage and performance
+- [ ] Implement freemium model with usage limits and premium features
+- [ ] Add email notifications for completed generations
+- [ ] Optimize AI prompts for different industries and roles
+- [ ] Implement caching strategies for improved performance
 
-### Stage 4: Polish, Testing & Optimization
-**Duration:** 3-4 days
+### Stage 4: Polish & Production Readiness
+**Duration:** 2-3 weeks  
 **Dependencies:** Stage 3 completion
 
 #### Sub-steps:
-- [ ] Implement comprehensive unit and integration tests
-- [ ] Add accessibility features (ARIA labels, keyboard navigation, screen reader support)
-- [ ] Optimize performance with code splitting and lazy loading
-- [ ] Implement SEO optimizations (meta tags, structured data, sitemap)
-- [ ] Add responsive design testing across all device sizes
-- [ ] Create error boundaries and comprehensive error handling
-- [ ] Implement analytics tracking for user interactions
-- [ ] Add progressive web app features (offline support, installability)
-- [ ] Optimize bundle size and loading performance
-- [ ] Conduct user acceptance testing and gather feedback
-- [ ] Prepare production deployment configuration
-- [ ] Create documentation for future maintenance and updates
-
-## Technical Implementation Details
-
-### Calculator Logic Flow:
-1. User selects model → Calculate base memory requirements
-2. User selects quantization → Adjust memory requirements (Q4: ~50% reduction, Q8: ~25% reduction)
-3. User sets performance target → Calculate required compute power
-4. User sets budget → Filter available options
-5. System recommends hardware configurations matching criteria
-6. Display local hardware costs vs VPS alternatives
-
-### Data Structure Example:
-```json
-{
-  "models": {
-    "llama-7b": {
-      "name": "Llama 7B",
-      "parameters": 7000000000,
-      "baseMemoryGB": 14,
-      "quantization": {
-        "fp16": { "multiplier": 1.0, "quality": "highest" },
-        "q8": { "multiplier": 0.75, "quality": "high" },
-        "q4": { "multiplier": 0.5, "quality": "good" }
-      }
-    }
-  },
-  "gpus": {
-    "rtx-4090": {
-      "name": "RTX 4090",
-      "vram": 24,
-      "price": 1599,
-      "performance": 830,
-      "power": 450
-    }
-  }
-}
-```
+- [ ] Conduct comprehensive security audit and penetration testing
+- [ ] Implement advanced monitoring and error tracking (Sentry, analytics)
+- [ ] Optimize performance (Core Web Vitals, loading times)
+- [ ] Add comprehensive user onboarding and help documentation
+- [ ] Implement advanced SEO optimization and meta tags
+- [ ] Set up automated testing suite (unit, integration, e2e)
+- [ ] Configure production deployment pipeline with staging environment
+- [ ] Implement GDPR compliance and data protection measures
+- [ ] Add rate limiting and API abuse prevention
+- [ ] Conduct beta user testing and gather feedback for final improvements
 
 ## Resource Links
 
-- [Next.js 15 Documentation](https://nextjs.org/docs)
-- [Tailwind CSS v4 Documentation](https://tailwindcss.com/docs)
-- [shadcn/ui Components](https://ui.shadcn.com)
-- [TypeScript Handbook](https://www.typescriptlang.org/docs)
-- [React Hook Form Guide](https://react-hook-form.com/get-started)
-- [Zod Schema Validation](https://zod.dev)
-- [Vitest Testing Framework](https://vitest.dev)
-- [Vercel Deployment Guide](https://vercel.com/docs/deployments)
-- [Web Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
-- [Performance Best Practices](https://web.dev/performance/)
+### Technology Documentation:
+- [Next.js 15 Documentation](https://nextjs.org/docs) - Complete guide to React framework
+- [TailwindCSS v4 Documentation](https://tailwindcss.com/docs) - Utility-first CSS framework
+- [shadcn/ui Components](https://ui.shadcn.com/) - React component library
+- [Supabase Documentation](https://supabase.com/docs) - Backend-as-a-Service platform
+- [Claude API Reference](https://docs.anthropic.com/claude/reference) - AI language model API
+- [n8n Documentation](https://docs.n8n.io/) - Workflow automation platform
 
-## Success Metrics
+### Best Practices & Guides:
+- [Next.js 15 Best Practices](https://nextjs.org/docs/app/building-your-application/routing) - App Router patterns
+- [Supabase Security Guide](https://supabase.com/docs/guides/auth/row-level-security) - RLS implementation
+- [TailwindCSS v4 Migration Guide](https://tailwindcss.com/docs/v4-beta) - Latest features and setup
+- [Claude API Best Practices](https://docs.anthropic.com/claude/docs/claude-3-model-card) - Prompt engineering
+- [n8n Workflow Templates](https://n8n.io/integrations/claude/) - Claude integration examples
 
-- [ ] Calculator provides hardware recommendations in under 30 seconds
-- [ ] Recommendations accuracy within ±20% of real-world performance
-- [ ] Page loads in under 2 seconds (Core Web Vitals)
-- [ ] Full responsive design working on all device sizes
-- [ ] Accessibility score of 95+ on Lighthouse
-- [ ] Zero critical bugs in production
-- [ ] SEO score of 90+ for better discoverability
+### Development Tools:
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/) - Type safety best practices
+- [Vercel Deployment Guide](https://vercel.com/docs/deployments) - Production deployment
+- [pnpm Documentation](https://pnpm.io/motivation) - Package management
+- [GitHub Actions](https://docs.github.com/en/actions) - CI/CD workflows
+
+## Technical Architecture Notes
+
+### Security Considerations:
+- All API keys stored securely in environment variables
+- Row Level Security (RLS) policies for data isolation
+- File upload validation and virus scanning
+- Rate limiting on AI API calls to prevent abuse
+- Secure file storage with signed URLs for temporary access
+
+### Performance Optimizations:
+- Next.js 15 App Router for optimal rendering strategies
+- Image optimization with Next.js Image component
+- Lazy loading for large components and data
+- Caching strategies for AI responses and file processing
+- CDN utilization for static assets
+
+### Scalability Planning:
+- Modular architecture for easy feature additions
+- Database indexing for efficient queries
+- Horizontal scaling capabilities with Supabase
+- Queue system for processing heavy workloads
+- Monitoring and alerting for production issues
+
+This implementation plan provides a comprehensive roadmap for building a scalable, secure, and user-friendly Cover Letter Generator application using modern web technologies and AI capabilities.
