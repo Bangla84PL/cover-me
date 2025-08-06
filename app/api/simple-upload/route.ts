@@ -58,73 +58,25 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Get the public URL for the uploaded file
-    const { data: urlData } = supabase.storage
-      .from('cv-uploads')
-      .getPublicUrl(filePath)
-
-    // Prepare data for n8n webhook
-    const n8nPayload = {
-      fileId: fileId,
+    // Since RLS is disabled, we'll just return success without database insert for now
+    console.log('File uploaded successfully:', {
+      fileId,
+      email,
+      jobUrl,
       fileName: file.name,
+      filePath,
+      fileSize: file.size
+    })
+
+    return NextResponse.json({
+      success: true,
+      fileId: fileId,
       filePath: filePath,
-      fileUrl: urlData.publicUrl,
-      email: email,
-      jobUrl: jobUrl,
-      fileSize: file.size,
-      fileType: file.type,
-      uploadedAt: new Date().toISOString()
-    }
-
-    // Trigger n8n workflow via webhook
-    const n8nWebhookUrl = process.env.N8N_WEBHOOK_URL
-    
-    if (!n8nWebhookUrl) {
-      console.error('N8N_WEBHOOK_URL environment variable not set')
-      return NextResponse.json(
-        { error: 'Webhook configuration missing' },
-        { status: 500 }
-      )
-    }
-
-    try {
-      const webhookResponse = await fetch(n8nWebhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(n8nPayload)
-      })
-
-      if (!webhookResponse.ok) {
-        throw new Error(`Webhook failed with status: ${webhookResponse.status}`)
-      }
-
-      const webhookResult = await webhookResponse.json()
-
-      return NextResponse.json({
-        success: true,
-        fileId: fileId,
-        filePath: filePath,
-        fileName: file.name,
-        webhookTriggered: true,
-        n8nResponse: webhookResult
-      })
-    } catch (webhookError) {
-      console.error('n8n webhook error:', webhookError)
-      
-      // Even if webhook fails, file was uploaded successfully
-      return NextResponse.json({
-        success: true,
-        fileId: fileId,
-        filePath: filePath,
-        fileName: file.name,
-        webhookTriggered: false,
-        error: 'Webhook failed but file uploaded successfully'
-      })
-    }
+      fileName: file.name,
+      message: 'File uploaded successfully to Supabase storage'
+    })
   } catch (error) {
-    console.error('Upload and webhook trigger error:', error)
+    console.error('CV upload error:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
