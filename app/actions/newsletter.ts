@@ -1,9 +1,11 @@
 'use server'
 
-import { supabaseServer } from '@/lib/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 
 export async function subscribeToNewsletter(email: string) {
   try {
+    const supabase = await createClient()
+    
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
@@ -14,7 +16,7 @@ export async function subscribeToNewsletter(email: string) {
     }
 
     // Check if email already exists
-    const { data: existingUser, error: checkError } = await supabaseServer
+    const { data: existingUser, error: checkError } = await supabase
       .from('Newsletter-signup')
       .select('email')
       .eq('email', email)
@@ -36,7 +38,7 @@ export async function subscribeToNewsletter(email: string) {
     }
 
     // Insert new subscriber
-    const { data, error } = await supabaseServer
+    const { data, error } = await supabase
       .from('Newsletter-signup')
       .insert([
         {
