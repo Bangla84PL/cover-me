@@ -1,343 +1,334 @@
-# UI/UX Documentation - LLM Hardware Calculator
+# UI/UX Design Document - Cover Letter Generator
 
-## Design System Specifications
+## Design System Overview
 
-### Brand Identity & Visual Language
+### Core Design Principles
+1. **Simplicity First**: Clean, uncluttered interface focusing on the 3-step process
+2. **Professional Appearance**: Business-appropriate aesthetic for career professionals
+3. **Mobile-First**: Responsive design ensuring accessibility across all devices
+4. **Transparency**: Clear progress indicators and status updates throughout
+5. **Accessibility**: WCAG 2.1 AA compliance for inclusive user experience
 
-#### Core Design Principles
-1. **Simplicity**: Clean, uncluttered interface focused on the calculator functionality
-2. **Clarity**: Clear visual hierarchy and intuitive information architecture  
-3. **Efficiency**: Streamlined user flow to get results in under 30 seconds
-4. **Trustworthiness**: Professional appearance that builds confidence in recommendations
-5. **Accessibility**: Inclusive design that works for all users
+## Visual Design System
 
-#### Color Palette
-
-**Primary Colors (shadcn/ui based)**
+### Color Palette
 ```css
-/* Light Mode */
---background: 0 0% 100%;          /* Pure white background */
---foreground: 222.2 84% 4.9%;     /* Dark text */
---primary: 222.2 47.4% 11.2%;     /* Deep blue-gray for CTAs */
---primary-foreground: 210 40% 98%; /* Light text on primary */
---secondary: 210 40% 96.1%;       /* Light gray for secondary elements */
---muted: 210 40% 96.1%;           /* Subtle background areas */
---accent: 210 40% 96.1%;          /* Highlight elements */
---border: 214.3 31.8% 91.4%;      /* Subtle borders */
+/* Primary Colors */
+--primary: 222.2 84% 4.9%;           /* Deep charcoal for main text */
+--primary-foreground: 210 40% 98%;   /* Light text on primary background */
 
-/* Dark Mode */
---background: 222.2 84% 4.9%;     /* Dark background */
---foreground: 210 40% 98%;        /* Light text */
---primary: 210 40% 98%;           /* Light primary for dark mode */
---primary-foreground: 222.2 47.4% 11.2%; /* Dark text on light primary */
+/* Secondary Colors */
+--secondary: 210 40% 96%;            /* Light gray for backgrounds */
+--secondary-foreground: 222.2 84% 4.9%; /* Dark text on secondary */
+
+/* Accent Colors */
+--accent: 210 40% 96%;               /* Subtle accent for interactive elements */
+--accent-foreground: 222.2 84% 4.9%; /* Text on accent backgrounds */
+
+/* Semantic Colors */
+--success: 142.1 76.2% 36.3%;       /* Green for success states */
+--warning: 47.9 95.8% 53.1%;        /* Yellow for warnings */
+--destructive: 0 84.2% 60.2%;       /* Red for errors */
+--info: 221.2 83.2% 53.3%;          /* Blue for informational states */
+
+/* Neutral Colors */
+--muted: 210 40% 96%;                /* Subtle backgrounds */
+--muted-foreground: 215.4 16.3% 46.9%; /* Muted text */
+--border: 214.3 31.8% 91.4%;        /* Borders and dividers */
 ```
 
-**Semantic Colors**
+### Typography Scale
 ```css
---success: 142 76% 36%;           /* Green for positive results */
---warning: 38 92% 50%;            /* Amber for warnings */
---destructive: 0 84.2% 60.2%;     /* Red for errors */
---info: 221 83% 53%;              /* Blue for information */
+/* Headings */
+--font-size-h1: 2.25rem;   /* 36px - Main page titles */
+--font-size-h2: 1.875rem;  /* 30px - Section headers */
+--font-size-h3: 1.5rem;    /* 24px - Subsection headers */
+--font-size-h4: 1.25rem;   /* 20px - Component titles */
+
+/* Body Text */
+--font-size-lg: 1.125rem;  /* 18px - Large body text */
+--font-size-base: 1rem;    /* 16px - Standard body text */
+--font-size-sm: 0.875rem;  /* 14px - Small text */
+--font-size-xs: 0.75rem;   /* 12px - Captions and labels */
+
+/* Line Heights */
+--line-height-tight: 1.25;
+--line-height-normal: 1.5;
+--line-height-relaxed: 1.75;
 ```
 
-#### Typography
-
-**Font System**
-- **Primary Font**: Inter (system fallback: ui-sans-serif, system-ui, sans-serif)
-- **Monospace Font**: JetBrains Mono (system fallback: ui-monospace, 'Courier New', monospace)
-
-**Type Scale**
+### Spacing System
 ```css
---text-xs: 0.75rem;      /* 12px - Small labels, captions */
---text-sm: 0.875rem;     /* 14px - Body text, descriptions */
---text-base: 1rem;       /* 16px - Default body text */
---text-lg: 1.125rem;     /* 18px - Emphasized text */
---text-xl: 1.25rem;      /* 20px - Small headings */
---text-2xl: 1.5rem;      /* 24px - Section headings */
---text-3xl: 1.875rem;    /* 30px - Page titles */
---text-4xl: 2.25rem;     /* 36px - Hero headings */
+/* Spacing Scale (based on 4px grid) */
+--spacing-1: 0.25rem;   /* 4px */
+--spacing-2: 0.5rem;    /* 8px */
+--spacing-3: 0.75rem;   /* 12px */
+--spacing-4: 1rem;      /* 16px */
+--spacing-5: 1.25rem;   /* 20px */
+--spacing-6: 1.5rem;    /* 24px */
+--spacing-8: 2rem;      /* 32px */
+--spacing-10: 2.5rem;   /* 40px */
+--spacing-12: 3rem;     /* 48px */
+--spacing-16: 4rem;     /* 64px */
+--spacing-20: 5rem;     /* 80px */
 ```
 
-**Font Weights**
-- **Regular (400)**: Body text, descriptions
-- **Medium (500)**: Emphasized text, labels
-- **Semibold (600)**: Headings, important information
-- **Bold (700)**: Hero text, primary CTAs
+## Component Design Specifications
 
-### Layout & Grid System
-
-#### Responsive Breakpoints
+### Primary Button
 ```css
-/* Tailwind CSS Breakpoints */
-sm: 640px   /* Small devices (phones) */
-md: 768px   /* Medium devices (tablets) */
-lg: 1024px  /* Large devices (desktops) */
-xl: 1280px  /* Extra large devices */
-2xl: 1536px /* Ultra-wide displays */
-```
-
-#### Container System
-- **Max Width**: 1200px for main content
-- **Padding**: 16px on mobile, 24px on tablet, 32px on desktop
-- **Margins**: Consistent 16px/24px/32px based on screen size
-
-#### Grid Layout
-```css
-/* Calculator Grid - Desktop */
-.calculator-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
-/* Calculator Grid - Mobile */
-@media (max-width: 768px) {
-  .calculator-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+.btn-primary:hover {
+  background: var(--primary) / 0.9;
+  transform: translateY(-1px);
 }
 ```
 
-## Component Guidelines
+### Input Fields
+```css
+.input-field {
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--background);
+  transition: border-color 0.2s ease;
+}
 
-### Input Components
-
-#### Model Selector Dropdown
-**Purpose**: Allow users to select from 5 popular LLM models
-
-**Specifications**:
-- Component: shadcn/ui Select
-- Trigger: Min-height 48px for touch accessibility
-- Options: Clear model names with parameter counts
-- Icon: Chevron down, 16px size
-- States: Default, focused, open, disabled
-
-```tsx
-<Select>
-  <SelectTrigger className="w-full">
-    <SelectValue placeholder="Choose an LLM model" />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem value="llama-7b">Llama 7B (7 billion parameters)</SelectItem>
-    <SelectItem value="llama-13b">Llama 13B (13 billion parameters)</SelectItem>
-    {/* ... other options */}
-  </SelectContent>
-</Select>
+.input-field:focus {
+  border-color: var(--primary);
+  outline: 2px solid var(--primary) / 0.2;
+}
 ```
 
-#### Quantization Radio Group
-**Purpose**: Select quantization level (Q4, Q8, FP16)
-
-**Specifications**:
-- Component: shadcn/ui RadioGroup
-- Layout: Horizontal on desktop, vertical on mobile
-- Labels: Clear descriptions of quality vs size trade-offs
-- Visual indicator: Radio circles with check marks
-
-#### Performance Slider
-**Purpose**: Set target tokens/second (5-50 range)
-
-**Specifications**:
-- Component: shadcn/ui Slider
-- Range: 5-50 tokens/second
-- Step: 1 token/second
-- Display: Real-time value indicator
-- Marks: Key performance milestones (10, 20, 30, 40)
-
-#### Budget Input
-**Purpose**: Set maximum budget for filtering recommendations
-
-**Specifications**:
-- Component: shadcn/ui Input with currency formatting
-- Validation: Positive numbers only
-- Format: USD with comma separators
-- Placeholder: "$1,500" 
-
-### Display Components
-
-#### Hardware Recommendations Card
-**Purpose**: Display 3-5 GPU recommendations based on criteria
-
-**Layout Structure**:
-```
-[GPU Image] [GPU Name]           [Price Badge]
-           [VRAM] [Performance]
-           [Compatibility Status]
-           [Expected Performance: XX tokens/sec]
+### Card Components
+```css
+.card {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: var(--spacing-6);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
 ```
 
-**Specifications**:
-- Component: shadcn/ui Card with custom styling
-- Image: 64x64px GPU product image
-- Price: Prominent badge with current pricing
-- Performance: Color-coded based on target achievement
-- Status indicators: Green (recommended), Yellow (acceptable), Red (insufficient)
+## User Flow Documentation
 
-#### VPS Alternatives Table
-**Purpose**: Show cloud alternatives with monthly costs
+### Primary User Journey: Cover Letter Generation
 
-**Specifications**:
-- Component: shadcn/ui Table
-- Columns: Provider, Configuration, Monthly Cost, Performance
-- Responsive: Stacks vertically on mobile
-- Actions: "Learn More" links to providers
+#### Step 1: Landing Page
+**Objective**: Communicate value proposition and guide users to start
+- **Header**: Clear navigation with login/signup options
+- **Hero Section**: 
+  - Compelling headline: "Generate Professional Cover Letters in Minutes"
+  - Subheading explaining the 3-step process
+  - Primary CTA: "Get Started Free"
+- **Features Section**: Key benefits with icons
+- **Social Proof**: Testimonials or usage statistics
+- **Footer**: Links to privacy policy, terms, and support
 
-#### Cost Breakdown Chart
-**Purpose**: Visual comparison of local vs cloud costs
+#### Step 2: Authentication
+**Objective**: Quick and secure user onboarding
+- **Login Form**:
+  - Email and password fields
+  - "Remember me" checkbox
+  - "Forgot password" link
+  - Social login options (Google, LinkedIn)
+- **Registration Form**:
+  - Email, password, confirm password
+  - Terms acceptance checkbox
+  - Email verification flow
 
-**Specifications**:
-- Component: Custom chart using CSS or simple bar visualization
-- Timeframes: 6 months, 1 year, 2 years
-- Categories: Hardware cost, Operating costs, Cloud costs
-- Colors: Use semantic color palette for different cost types
+#### Step 3: CV Upload
+**Objective**: Easy and reliable file upload experience
+- **Upload Interface**:
+  - Drag-and-drop zone with clear visual feedback
+  - File type indicators (PDF, JPG, PNG)
+  - Progress bar during upload
+  - File validation feedback
+- **Upload States**:
+  - Idle: "Drag your CV here or click to browse"
+  - Uploading: Progress bar with percentage
+  - Success: Checkmark with file name
+  - Error: Clear error message with retry option
 
-## User Experience Flow
+#### Step 4: Job Details Input
+**Objective**: Capture job information for personalization
+- **URL Input Field**:
+  - Large input with placeholder text
+  - URL validation feedback
+  - Supported platforms indicator
+- **Manual Input Option**:
+  - Company name, position title, key requirements
+  - Rich text editor for job description
+- **Processing Status**:
+  - Loading spinner during job data extraction
+  - Success confirmation with extracted data preview
 
-### User Journey Map
+#### Step 5: AI Generation
+**Objective**: Transparent AI processing with progress feedback
+- **Generation Interface**:
+  - Multi-step progress indicator
+  - Real-time status updates
+  - Estimated time remaining
+- **Processing Steps**:
+  - "Analyzing your CV..."
+  - "Extracting job requirements..."
+  - "Generating personalized content..."
+  - "Formatting your cover letter..."
 
-#### Primary Flow: Hardware Recommendation
-1. **Landing** → User arrives at calculator page
-2. **Model Selection** → User selects LLM model from dropdown
-3. **Configuration** → User sets quantization and performance target
-4. **Budget Input** → User enters budget constraint
-5. **Results** → System displays hardware recommendations
-6. **Comparison** → User reviews local vs cloud options
-7. **Decision** → User has enough information to make purchasing decision
+#### Step 6: Preview and Edit
+**Objective**: Review and customize generated content
+- **Preview Panel**:
+  - Full cover letter display
+  - Professional formatting
+  - Highlighting of key personalized sections
+- **Edit Controls**:
+  - Basic text editing capabilities
+  - Template style options
+  - Tone adjustment (formal/conversational)
+- **Action Buttons**:
+  - Download PDF
+  - Save to account
+  - Generate new version
 
-**Success Criteria**: Complete flow in under 30 seconds
+### Dashboard User Journey
 
-#### Secondary Flows
-- **Comparison Shopping**: User adjusts parameters to see different recommendations
-- **Budget Optimization**: User modifies budget to see more/fewer options
-- **Learning**: User explores different model/quantization combinations
+#### Dashboard Overview
+**Objective**: Provide quick access to key functions and insights
+- **Quick Actions Panel**:
+  - "Generate New Cover Letter" CTA
+  - Upload new CV option
+- **Recent Generations**:
+  - List of last 5 cover letters
+  - Quick preview and download options
+- **Usage Statistics**:
+  - Monthly generation count
+  - Remaining free generations
+  - Upgrade prompt for premium features
 
-### Interaction Patterns
+#### Generation History
+**Objective**: Manage and access previous cover letters
+- **Filter and Search**:
+  - Date range selector
+  - Company name search
+  - Position title filter
+- **List View**:
+  - Company name and position
+  - Creation date
+  - Quick actions (download, preview, delete)
+- **Bulk Actions**:
+  - Select multiple items
+  - Bulk download as ZIP
+  - Bulk delete option
 
-#### Form Interactions
-- **Progressive Disclosure**: Show budget filtering only after model selection
-- **Real-time Updates**: Calculator updates as user changes inputs
-- **Smart Defaults**: Pre-select reasonable defaults (Llama 7B, Q4, 20 tokens/sec)
-- **Validation**: Immediate feedback for invalid inputs
+## Responsive Design Requirements
 
-#### Visual Feedback
-- **Loading States**: Skeleton screens during calculations
-- **Success States**: Green checkmarks for suitable hardware
-- **Warning States**: Yellow alerts for marginal performance
-- **Error States**: Red indicators for insufficient hardware
+### Mobile Design (320px - 768px)
+- **Single column layout** for all content
+- **Touch-friendly** button sizing (minimum 44px height)
+- **Simplified navigation** with hamburger menu
+- **Condensed spacing** while maintaining readability
+- **Mobile-optimized file upload** with camera option for CV photos
 
-### Accessibility Requirements
+### Tablet Design (768px - 1024px)
+- **Two-column layout** for dashboard sections
+- **Medium spacing** between elements
+- **Touch and mouse friendly** interaction targets
+- **Sidebar navigation** for dashboard pages
 
-#### WCAG 2.1 AA Compliance
-- **Color Contrast**: Minimum 4.5:1 for normal text, 3:1 for large text
+### Desktop Design (1024px+)
+- **Multi-column layouts** for complex pages
+- **Full sidebar navigation** with expanded labels
+- **Keyboard shortcuts** for power users
+- **Hover states** for interactive elements
+- **Larger preview panels** for cover letter review
+
+## Accessibility Standards
+
+### WCAG 2.1 AA Compliance
+- **Color Contrast**: Minimum 4.5:1 ratio for normal text, 3:1 for large text
 - **Keyboard Navigation**: All interactive elements accessible via keyboard
-- **Screen Readers**: Proper ARIA labels and semantic HTML
+- **Screen Reader Support**: Proper ARIA labels and semantic HTML
 - **Focus Management**: Clear focus indicators and logical tab order
+- **Alternative Text**: Descriptive alt text for all images and icons
 
-#### Specific Implementations
-```tsx
-// Example: Accessible slider
-<Slider
-  value={[performance]}
-  onValueChange={setPerformance}
-  max={50}
-  min={5}
-  step={1}
-  aria-label="Target performance in tokens per second"
-  aria-describedby="performance-description"
-/>
-<div id="performance-description" className="sr-only">
-  Select your desired performance target between 5 and 50 tokens per second
+### Implementation Guidelines
+```html
+<!-- Semantic HTML Structure -->
+<main role="main">
+  <section aria-labelledby="upload-heading">
+    <h2 id="upload-heading">Upload Your CV</h2>
+    <!-- Content -->
+  </section>
+</main>
+
+<!-- Accessible Form Elements -->
+<label for="job-url">Job Posting URL</label>
+<input 
+  id="job-url" 
+  type="url" 
+  aria-describedby="url-help"
+  required
+>
+<div id="url-help">Enter the full URL of the job posting</div>
+
+<!-- Loading States with Screen Reader Support -->
+<div role="status" aria-live="polite">
+  <span className="sr-only">Generating cover letter...</span>
+  <div aria-hidden="true">⏳ Processing...</div>
 </div>
 ```
 
-#### Mobile Considerations
-- **Touch Targets**: Minimum 44px for all interactive elements
-- **Thumb-Friendly**: Important actions within easy thumb reach
-- **Gesture Support**: Swipe gestures for browsing recommendations
-- **Responsive Text**: Scale typography appropriately for screen size
+## Animation and Interaction Guidelines
 
-## Design Patterns & Best Practices
+### Micro-Interactions
+- **Button Hover**: Subtle lift effect (2px translate)
+- **Form Focus**: Smooth border color transition (200ms)
+- **Loading States**: Gentle pulse animation for content placeholders
+- **Success States**: Green checkmark animation with scale effect
 
-### Component Composition
-```tsx
-// Example: Calculator form structure
-<Card className="calculator-container">
-  <CardHeader>
-    <CardTitle>LLM Hardware Calculator</CardTitle>
-    <CardDescription>Find the perfect hardware for your LLM deployment</CardDescription>
-  </CardHeader>
-  <CardContent className="space-y-6">
-    <ModelSelector />
-    <QuantizationSelector />
-    <PerformanceSlider />
-    <BudgetInput />
-  </CardContent>
-  <CardFooter>
-    <Button onClick={calculateRecommendations} className="w-full">
-      Get Recommendations
-    </Button>
-  </CardFooter>
-</Card>
-```
-
-### State Management Patterns
-- **Form State**: React Hook Form for complex form validation
-- **Calculator State**: Custom hook for calculator logic
-- **UI State**: Local component state for toggles and temporary data
-
-### Error Handling Design
-```tsx
-// Example: Error state component
-<Alert variant="destructive">
-  <AlertTriangle className="h-4 w-4" />
-  <AlertTitle>Calculation Error</AlertTitle>
-  <AlertDescription>
-    Unable to find hardware matching your criteria. Try adjusting your performance target or budget.
-  </AlertDescription>
-</Alert>
-```
-
-### Loading States
-```tsx
-// Example: Loading skeleton
-<Card>
-  <CardHeader>
-    <Skeleton className="h-6 w-32" />
-    <Skeleton className="h-4 w-48" />
-  </CardHeader>
-  <CardContent>
-    <Skeleton className="h-20 w-full" />
-  </CardContent>
-</Card>
-```
-
-### Responsive Design Strategy
-- **Mobile First**: Design for mobile, enhance for desktop
-- **Progressive Enhancement**: Core functionality works on all devices
-- **Adaptive Layout**: Components reorganize based on screen size
-- **Performance**: Optimize images and interactions for mobile devices
-
-## Implementation Guidelines
-
-### shadcn/ui Integration
-1. **Theme Configuration**: Customize CSS variables in globals.css
-2. **Component Customization**: Create variants using cva (class-variance-authority)
-3. **Consistent Styling**: Use design tokens for all custom components
-4. **Dark Mode**: Implement using CSS custom properties
+### Page Transitions
+- **Route Changes**: Smooth fade transition (300ms)
+- **Modal Dialogs**: Scale and fade in from center
+- **Sidebar Navigation**: Slide transition for mobile menu
 
 ### Performance Considerations
-- **Code Splitting**: Lazy load non-critical components
-- **Image Optimization**: Use Next.js Image component with proper sizing
-- **Bundle Size**: Tree-shake unused shadcn/ui components
-- **Core Web Vitals**: Optimize for LCP, FID, and CLS metrics
+- **Reduced Motion**: Respect `prefers-reduced-motion` setting
+- **Hardware Acceleration**: Use `transform` and `opacity` for animations
+- **Duration Limits**: Keep animations under 500ms for UI responsiveness
 
-### Testing Strategy
-- **Visual Regression**: Capture screenshots of key components
-- **Accessibility Testing**: Automated testing with axe-core
-- **User Testing**: Validate user flow with real users
-- **Cross-browser**: Test on Chrome, Firefox, Safari, Edge
+## Error Handling and Feedback
 
-This comprehensive UI/UX documentation provides the foundation for building a professional, accessible, and user-friendly LLM Hardware Calculator that aligns with modern web design standards and user expectations.
+### Error State Design
+```css
+.error-state {
+  border-color: var(--destructive);
+  background: var(--destructive) / 0.1;
+}
+
+.error-message {
+  color: var(--destructive);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-2);
+}
+```
+
+### Success Feedback
+- **Instant Feedback**: Immediate visual confirmation for user actions
+- **Progress Indicators**: Clear status for multi-step processes
+- **Success Messages**: Positive reinforcement with clear next steps
+
+### Loading States
+- **Skeleton Screens**: Content-aware loading placeholders
+- **Progress Bars**: Determinate progress for file uploads and AI generation
+- **Spinner Animations**: Indeterminate loading for quick operations
+
+This UI/UX documentation provides comprehensive guidelines for creating a professional, accessible, and user-friendly Cover Letter Generator application that meets modern web standards and user expectations.

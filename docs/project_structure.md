@@ -1,303 +1,108 @@
-# Project Structure - LLM Hardware Calculator
+# Project Structure - Cover Letter Generator
 
-## Root Directory Structure
+## Root Directory Overview
 
 ```
-llm-calc/
-├── app/                          # Next.js App Router directory
-│   ├── (calculator)/            # Route group for calculator pages
-│   │   ├── page.tsx             # Main calculator page
-│   │   └── components/          # Page-specific components
-│   ├── api/                     # API routes (if needed for future features)
-│   ├── globals.css              # Global styles and Tailwind imports
-│   ├── layout.tsx               # Root layout component
-│   ├── loading.tsx              # Global loading UI
-│   ├── error.tsx                # Global error UI
-│   └── not-found.tsx            # 404 page
+cover-me/
+├── app/                          # Next.js 15 App Router pages and layouts
 ├── components/                   # Reusable React components
-│   ├── ui/                      # shadcn/ui components
-│   │   ├── button.tsx
-│   │   ├── input.tsx
-│   │   ├── select.tsx
-│   │   ├── slider.tsx
-│   │   ├── radio-group.tsx
-│   │   ├── card.tsx
-│   │   ├── badge.tsx
-│   │   ├── alert.tsx
-│   │   ├── progress.tsx
-│   │   ├── separator.tsx
-│   │   ├── skeleton.tsx
-│   │   └── index.ts             # Barrel exports
-│   ├── calculator/              # Calculator-specific components
-│   │   ├── ModelSelector.tsx
-│   │   ├── QuantizationSelector.tsx
-│   │   ├── PerformanceSlider.tsx
-│   │   ├── BudgetInput.tsx
-│   │   ├── HardwareRecommendations.tsx
-│   │   ├── VPSAlternatives.tsx
-│   │   ├── CostBreakdown.tsx
-│   │   └── ResultsDisplay.tsx
-│   ├── layout/                  # Layout components
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   ├── Navigation.tsx
-│   │   └── ThemeProvider.tsx
-│   └── common/                  # Common utility components
-│       ├── LoadingSpinner.tsx
-│       ├── ErrorBoundary.tsx
-│       ├── SEOHead.tsx
-│       └── AnalyticsProvider.tsx
-├── lib/                         # Utility functions and configurations
-│   ├── utils.ts                 # General utility functions
-│   ├── calculator.ts            # Calculator logic and algorithms
-│   ├── data.ts                  # Data access layer
-│   ├── validation.ts            # Zod schemas and validation
-│   ├── constants.ts             # Application constants
-│   ├── types.ts                 # TypeScript type definitions
-│   └── analytics.ts             # Analytics tracking functions
-├── data/                        # Static data files
-│   ├── models.json              # LLM model specifications
-│   ├── gpus.json                # GPU specifications and pricing
-│   ├── vps-providers.json       # VPS provider information
-│   └── currency.json            # Currency and pricing data
-├── hooks/                       # Custom React hooks
-│   ├── useCalculator.ts         # Main calculator logic hook
-│   ├── useLocalStorage.ts       # Persistent state management
-│   ├── useDebounce.ts           # Debouncing utility hook
-│   └── useMediaQuery.ts         # Responsive design hook
-├── styles/                      # Style-related files
-│   ├── components.css           # Component-specific styles
-│   └── utilities.css            # Custom utility classes
-├── public/                      # Static assets
-│   ├── icons/                   # Icon files
-│   │   ├── gpu-brands/          # GPU manufacturer icons
-│   │   └── model-logos/         # LLM model logos
-│   ├── images/                  # Image assets
-│   └── manifest.json            # PWA manifest
-├── tests/                       # Test files
-│   ├── __mocks__/               # Mock files
-│   ├── components/              # Component tests
-│   ├── lib/                     # Library function tests
-│   └── setup.ts                 # Test setup configuration
-├── docs/                        # Documentation
-│   ├── Implementation.md        # Implementation guide
-│   ├── project_structure.md     # This file
-│   ├── UI_UX_doc.md            # UI/UX specifications
-│   └── Bug_tracking.md          # Bug tracking and solutions
-├── .env.local                   # Environment variables
-├── .env.example                 # Environment variables template
-├── .gitignore                   # Git ignore rules
-├── .cursorrules                 # Cursor AI rules
-├── eslint.config.mjs           # ESLint configuration
-├── next.config.ts              # Next.js configuration
-├── package.json                # Project dependencies
-├── pnpm-lock.yaml              # Package lock file
-├── postcss.config.mjs          # PostCSS configuration
-├── tailwind.config.ts          # Tailwind CSS configuration
-├── tsconfig.json               # TypeScript configuration
-├── vitest.config.ts            # Vitest testing configuration
-└── README.md                   # Project documentation
+├── lib/                          # Utility functions and configurations
+├── types/                        # TypeScript type definitions
+├── hooks/                        # Custom React hooks
+├── providers/                    # React context providers
+├── middleware.ts                 # Next.js middleware for auth/routing
+├── docs/                         # Project documentation
+├── public/                       # Static assets
+├── supabase/                     # Supabase migrations and functions
+└── n8n-workflows/                # n8n workflow definitions
 ```
 
-## Detailed Directory Explanations
+## App Directory Structure
 
-### `/app` Directory (Next.js App Router)
-The main application directory following Next.js 15 App Router conventions:
-- **Route Groups**: `(calculator)` groups related pages without affecting URL structure
-- **Special Files**: `layout.tsx`, `loading.tsx`, `error.tsx`, `not-found.tsx` for handling UI states
-- **Page Components**: Each page.tsx represents a route in the application
+```
+app/
+├── (auth)/                       # Authentication route group
+│   ├── login/page.tsx            # Login page
+│   ├── register/page.tsx         # Registration page
+│   └── layout.tsx                # Auth-specific layout
+├── (dashboard)/                  # Protected route group
+│   ├── dashboard/page.tsx        # Main dashboard
+│   ├── generate/page.tsx         # Cover letter generation
+│   └── layout.tsx                # Dashboard layout
+├── api/                          # Server-side API routes
+│   ├── auth/                     # Authentication endpoints
+│   ├── upload/                   # File upload handling
+│   ├── generate/                 # Cover letter generation
+│   └── n8n/                      # n8n webhook endpoints
+├── globals.css                   # TailwindCSS v4 configuration
+├── layout.tsx                    # Root layout with providers
+└── page.tsx                      # Landing page
+```
 
-### `/components` Directory
-Organized by purpose and reusability:
+## Components Organization
 
-#### `/components/ui`
-- Contains all shadcn/ui components
-- Each component follows the shadcn/ui pattern with proper TypeScript types
-- Barrel exports in `index.ts` for clean imports
+```
+components/
+├── ui/                           # shadcn/ui base components
+├── forms/                        # Form-specific components
+├── dashboard/                    # Dashboard-specific components
+├── generation/                   # Cover letter generation flow
+├── layout/                       # Layout components
+└── common/                       # Common reusable components
+```
 
-#### `/components/calculator`
-- Calculator-specific business logic components
-- Each component handles a specific part of the calculator interface
-- Designed for reusability and maintainability
+## Library Structure
 
-#### `/components/layout`
-- Layout-related components that wrap content
-- Theme provider for dark/light mode switching
-- Navigation and structural components
+```
+lib/
+├── supabase/                     # Supabase configurations
+├── ai/                           # AI integration (Claude API)
+├── n8n/                          # n8n integration
+├── utils/                        # General utility functions
+├── validations/                  # Zod schemas and validation
+└── errors/                       # Error handling utilities
+```
 
-#### `/components/common`
-- Utility components used across the application
-- Error handling and loading states
-- SEO and analytics components
+## Configuration Files
 
-### `/lib` Directory
-Core business logic and utilities:
-- **utils.ts**: General utility functions (class merging, formatting, etc.)
-- **calculator.ts**: Core calculator algorithms and hardware requirement calculations
-- **data.ts**: Data access layer with functions to retrieve and manipulate hardware data
-- **validation.ts**: Zod schemas for form validation and type safety
-- **types.ts**: TypeScript type definitions for the entire application
+### Environment Variables (.env.local)
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+CLAUDE_API_KEY=
+N8N_WEBHOOK_URL=
+N8N_API_KEY=
+```
 
-### `/data` Directory
-Static JSON files containing:
-- **models.json**: LLM model specifications (parameters, memory requirements, quantization options)
-- **gpus.json**: GPU specifications (VRAM, performance metrics, pricing)
-- **vps-providers.json**: VPS provider information and pricing
-- **currency.json**: Currency conversion and pricing data
+### TailwindCSS v4 Setup (globals.css)
+```css
+@import "tailwindcss";
 
-### `/hooks` Directory
-Custom React hooks for:
-- **useCalculator.ts**: Main calculator state management and logic
-- **useLocalStorage.ts**: Persistent storage for user preferences
-- **useDebounce.ts**: Performance optimization for input handling
-- **useMediaQuery.ts**: Responsive design breakpoint detection
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+}
 
-### `/tests` Directory
-Testing infrastructure:
-- Component unit tests using Vitest and React Testing Library
-- Library function tests for calculator logic
-- Mock files for external dependencies
-- Setup configuration for testing environment
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+```
 
 ## File Naming Conventions
 
-### React Components
-- **PascalCase** for component files: `ModelSelector.tsx`
-- **Index files** for barrel exports: `index.ts`
-- **Test files** with `.test.tsx` suffix: `ModelSelector.test.tsx`
+- **Components**: PascalCase (`CvUploadForm.tsx`)
+- **Utilities**: camelCase (`formatDate.ts`)
+- **Hooks**: kebab-case with prefix (`use-auth.ts`)
+- **API Routes**: kebab-case directories (`/api/cover-letter/`)
 
-### Utility Functions
-- **camelCase** for utility files: `calculator.ts`
-- **kebab-case** for data files: `vps-providers.json`
-- **Test files** with `.test.ts` suffix: `calculator.test.ts`
+## Key Architectural Principles
 
-### Styling
-- **kebab-case** for CSS files: `components.css`
-- **Component-specific** styles should be co-located or use CSS modules if needed
-
-## Module Organization Patterns
-
-### Barrel Exports
-```typescript
-// components/ui/index.ts
-export { Button } from './button'
-export { Input } from './input'
-export { Select } from './select'
-// ... other exports
-```
-
-### Type Definitions
-```typescript
-// lib/types.ts
-export interface LLMModel {
-  id: string
-  name: string
-  parameters: number
-  baseMemoryGB: number
-  quantization: QuantizationOptions
-}
-
-export interface GPUSpec {
-  id: string
-  name: string
-  vram: number
-  price: number
-  performance: number
-}
-```
-
-### Configuration Files
-
-#### Tailwind Configuration
-```typescript
-// tailwind.config.ts
-import type { Config } from "tailwindcss"
-
-const config: Config = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        // ... custom color palette
-      },
-    },
-  },
-  plugins: [require("tailwindcss-animate")],
-}
-
-export default config
-```
-
-#### TypeScript Path Mapping
-```json
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["./components/*"],
-      "@/lib/*": ["./lib/*"],
-      "@/hooks/*": ["./hooks/*"],
-      "@/data/*": ["./data/*"]
-    }
-  }
-}
-```
-
-## Asset Organization
-
-### Public Assets
-- **Icons**: Organized by category (gpu-brands, model-logos)
-- **Images**: Product images, logos, and graphics
-- **Manifest**: PWA configuration for installability
-
-### Static Data Structure
-```json
-{
-  "models": {
-    "llama-7b": {
-      "id": "llama-7b",
-      "name": "Llama 7B",
-      "parameters": 7000000000,
-      "baseMemoryGB": 14,
-      "quantization": {
-        "fp16": { "multiplier": 1.0, "quality": "highest" },
-        "q8": { "multiplier": 0.75, "quality": "high" },
-        "q4": { "multiplier": 0.5, "quality": "good" }
-      }
-    }
-  }
-}
-```
-
-## Build and Deployment Structure
-
-### Development Scripts
-```json
-{
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint . --ext .ts,.tsx",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "type-check": "tsc --noEmit"
-  }
-}
-```
-
-### Environment Configuration
-- **Development**: `.env.local` for local development variables
-- **Production**: Environment variables configured in Vercel dashboard
-- **Example**: `.env.example` template for required variables
-
-This structure provides a solid foundation for the LLM Hardware Calculator, ensuring maintainability, scalability, and developer productivity while following Next.js and React best practices.
+1. **Next.js 15 App Router** for modern routing and RSC support
+2. **TypeScript** for type safety across the application
+3. **Modular structure** for easy maintenance and scaling
+4. **Clear separation** between UI, business logic, and data layers
+5. **Supabase integration** for authentication, database, and storage
+6. **n8n workflows** for automation and AI processing
+7. **shadcn/ui** for consistent component library
