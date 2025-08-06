@@ -6,12 +6,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export default function Home() {
   const [step, setStep] = useState<'hero' | 'form' | 'generating' | 'result'>('hero')
   const [email, setEmail] = useState("")
   const [jobUrl, setJobUrl] = useState("")
   const [cvFile, setCvFile] = useState<File | null>(null)
+  const [language, setLanguage] = useState("english")
   const [uploading, setUploading] = useState(false)
   const [generating, setGenerating] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -54,6 +56,7 @@ export default function Home() {
       uploadFormData.append('file', cvFile)
       uploadFormData.append('email', email)
       uploadFormData.append('jobUrl', jobUrl)
+      uploadFormData.append('language', language)
 
       const uploadResponse = await fetch('/api/simple-upload', {
         method: 'POST',
@@ -73,6 +76,7 @@ File ID: ${uploadResult.fileId}
 File Name: ${uploadResult.fileName}
 Email: ${email}
 Job URL: ${jobUrl}
+Language: ${language}
 
 Your CV has been successfully uploaded to Supabase storage and your information has been recorded.
 
@@ -260,6 +264,22 @@ Thank you for using our service!`)
                     </p>
                   </div>
                 )}
+              </div>
+
+              {/* Language Selector */}
+              <div className="space-y-2">
+                <Label htmlFor="language">Cover Letter Language *</Label>
+                <Select value={language} onValueChange={setLanguage}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select language for your cover letter" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="english">🇺🇸 English</SelectItem>
+                    <SelectItem value="polish">🇵🇱 Polski</SelectItem>
+                    <SelectItem value="spanish">🇪🇸 Español</SelectItem>
+                    <SelectItem value="chinese">🇨🇳 中文</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Error Display */}
