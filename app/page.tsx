@@ -273,7 +273,6 @@ Thank you for using our service!`)
                   id="language"
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
-                  placeholder="Select language for your cover letter"
                 >
                   <option value="english">🇺🇸 English</option>
                   <option value="polish">🇵🇱 Polski</option>
