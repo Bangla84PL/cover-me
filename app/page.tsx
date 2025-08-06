@@ -10,10 +10,10 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-foreground">Cover Letter Generator</h1>
           <div className="space-x-4">
-            <Link href="/auth/login">
-              <Button variant="ghost">Login</Button>
+            <Link href="/generate">
+              <Button variant="ghost">Try Demo</Button>
             </Link>
-            <Link href="/auth/register">
+            <Link href="/generate">
               <Button>Get Started</Button>
             </Link>
           </div>
@@ -30,7 +30,7 @@ export default function Home() {
             Transform your CV and job URLs into personalized, professional cover letters using AI. 
             Simple 3-step process that saves you hours of writing.
           </p>
-          <Link href="/auth/register">
+          <Link href="/generate">
             <Button size="lg" className="text-lg px-8 py-3">
               Start Free Trial
             </Button>
