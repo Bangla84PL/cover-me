@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { generateCoverLetter } from '@/lib/claude'
-import { createClient } from '@/lib/supabase/server'
+import { createServiceRoleClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     // If we have an uploadId, update the cv_uploads record with the generated cover letter
     if (uploadId && email) {
       try {
-        const supabase = await createClient()
+        const supabase = createServiceRoleClient()
         await supabase
           .from('cv_uploads')
           .update({
