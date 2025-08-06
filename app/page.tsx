@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Select } from "@/components/ui/select"
 
@@ -203,25 +202,36 @@ Thank you for using our service!`)
 
   if (step === 'form') {
     return (
-      <div className="min-h-screen bg-background py-8">
-        <div className="container mx-auto px-4 max-w-2xl">
+      <div className="min-h-screen py-8 relative">
+        {/* Jungle Background */}
+        <div 
+          className="fixed inset-0 z-0"
+          style={{
+            backgroundImage: "url('/jungle background.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat"
+          }}
+        >
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4 max-w-2xl">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">Generate Your Cover Letter</h1>
-            <p className="text-muted-foreground">Fill in your details to get started</p>
+            <h1 className="text-4xl font-bold text-white mb-4">Generate Your Cover Letter</h1>
+            <p className="text-white/80 text-lg">Fill in your details to get started</p>
           </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Your Information</CardTitle>
-              <CardDescription>
-                We need your email, CV, and the job you're applying for
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
+          <div className="rounded-lg border border-white/20 shadow-sm bg-white/15 backdrop-blur" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15) !important' }}>
+            <div className="flex flex-col space-y-1.5 p-6">
+              <h3 className="text-2xl font-semibold leading-none tracking-tight text-white">Your Information</h3>
+              <p className="text-sm text-white/70">We need your email, CV, and the job you're applying for</p>
+            </div>
+            <div className="p-6 pt-0 space-y-6">
               {/* Email Field */}
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address *</Label>
+                <label className="text-sm font-medium text-white">Email Address *</label>
                 <Input
                   id="email"
                   type="email"
@@ -234,7 +244,7 @@ Thank you for using our service!`)
 
               {/* Job URL Field */}
               <div className="space-y-2">
-                <Label htmlFor="job-url">Job Posting URL *</Label>
+                <label className="text-sm font-medium text-white">Job Posting URL *</label>
                 <Input
                   id="job-url"
                   type="url"
@@ -247,7 +257,7 @@ Thank you for using our service!`)
 
               {/* CV Upload Field */}
               <div className="space-y-2">
-                <Label htmlFor="cv-upload">Upload Your CV *</Label>
+                <label className="text-sm font-medium text-white">Upload Your CV *</label>
                 <Input
                   id="cv-upload"
                   type="file"
@@ -268,7 +278,7 @@ Thank you for using our service!`)
 
               {/* Language Selector */}
               <div className="space-y-2">
-                <Label htmlFor="language">Cover Letter Language *</Label>
+                <label className="text-sm font-medium text-white">Cover Letter Language *</label>
                 <Select
                   id="language"
                   value={language}
@@ -290,23 +300,28 @@ Thank you for using our service!`)
 
               {/* Action Buttons */}
               <div className="flex space-x-4">
-                <Button 
-                  variant="outline" 
+                <button
                   onClick={() => setStep('hero')}
-                  className="flex-1"
+                  className="flex-1 px-4 py-2 border border-white/30 rounded-md text-white text-sm font-medium transition-all duration-200 hover:border-white/50 hover:bg-white/10"
                 >
                   Back
-                </Button>
-                <Button 
+                </button>
+                <button
                   onClick={handleGenerate}
                   disabled={!email || !jobUrl || !cvFile || !email.includes('@') || generating}
-                  className="flex-1"
+                  className="flex-1 px-6 py-3 rounded-md text-white text-base font-medium border border-white/30 relative overflow-hidden transition-all duration-200 hover:border-white/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ 
+                    backgroundImage: "url('/jungle background.png')", 
+                    backgroundSize: "cover", 
+                    backgroundPosition: "center" 
+                  }}
                 >
-                  Generate Cover Letter
-                </Button>
+                  <div className="absolute inset-0 bg-black/40 rounded-md"></div>
+                  <span className="relative z-10">Generate Cover Letter</span>
+                </button>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </div>
     )
