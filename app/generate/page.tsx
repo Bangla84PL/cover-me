@@ -15,6 +15,7 @@ export default function GeneratePage() {
   const [cvFile, setCvFile] = useState<File | null>(null)
   const [cvText, setCvText] = useState("")
   const [jobUrl, setJobUrl] = useState("")
+  const [email, setEmail] = useState("")
   const [generatedLetter, setGeneratedLetter] = useState("")
   const [error, setError] = useState("")
 
@@ -51,13 +52,13 @@ export default function GeneratePage() {
   }
 
   const handleNextStep = () => {
-    if (step < 3) {
+    if (step < 4) {
       setStep(step + 1)
     }
   }
 
   const handleGenerate = async () => {
-    if (!cvText || !jobUrl) return
+    if (!cvText || !jobUrl || !email || !cvFile) return
     
     setGenerating(true)
     setProgress(0)
@@ -75,6 +76,24 @@ export default function GeneratePage() {
     }, 500)
 
     try {
+      // First upload CV file and save record to Supabase
+      const formData = new FormData()
+      formData.append('file', cvFile)
+      formData.append('email', email)
+      formData.append('jobUrl', jobUrl)
+
+      const uploadResponse = await fetch('/api/upload-cv', {
+        method: 'POST',
+        body: formData
+      })
+
+      const uploadResult = await uploadResponse.json()
+
+      if (!uploadResponse.ok) {
+        throw new Error(uploadResult.error || 'Failed to save CV data')
+      }
+
+      // Then generate cover letter
       const response = await fetch('/api/generate-cover-letter', {
         method: 'POST',
         headers: {
@@ -84,7 +103,9 @@ export default function GeneratePage() {
           cvText,
           jobDescription: jobUrl,
           jobTitle: "the position",
-          companyName: "the company"
+          companyName: "the company",
+          email: email,
+          uploadId: uploadResult.uploadId
         })
       })
 
@@ -96,7 +117,7 @@ export default function GeneratePage() {
 
       setGeneratedLetter(result.coverLetter)
       setProgress(100)
-      setStep(3)
+      setStep(4)
     } catch (error) {
       setError(error instanceof Error ? error.message : 'Failed to generate cover letter')
     } finally {
@@ -111,13 +132,13 @@ export default function GeneratePage() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">Generate Cover Letter</h1>
-          <p className="text-muted-foreground">Create a professional cover letter in 3 simple steps</p>
+          <p className="text-muted-foreground">Create a professional cover letter in 4 simple steps</p>
         </div>
 
         {/* Progress Steps */}
         <div className="flex justify-center mb-8">
-          <div className="flex space-x-8">
-            {[1, 2, 3].map((stepNumber) => (
+          <div className="flex space-x-6">
+            {[1, 2, 3, 4].map((stepNumber) => (
               <div key={stepNumber} className="flex items-center">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
@@ -133,7 +154,8 @@ export default function GeneratePage() {
                 }`}>
                   {stepNumber === 1 && 'Upload CV'}
                   {stepNumber === 2 && 'Job Details'}
-                  {stepNumber === 3 && 'Generate'}
+                  {stepNumber === 3 && 'Your Email'}
+                  {stepNumber === 4 && 'Generate'}
                 </span>
               </div>
             ))}
@@ -222,8 +244,48 @@ export default function GeneratePage() {
                   Back
                 </Button>
                 <Button 
+                  onClick={handleNextStep}
+                  disabled={!jobUrl}
+                  className="flex-1"
+                >
+                  Continue
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Step 3: Email Collection */}
+        {step === 3 && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Your Email Address</CardTitle>
+              <CardDescription>
+                We'll send you a copy of your cover letter and save your progress
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email Address</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="your.email@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="flex space-x-4">
+                <Button 
+                  variant="outline" 
+                  onClick={() => setStep(2)}
+                  className="flex-1"
+                >
+                  Back
+                </Button>
+                <Button 
                   onClick={handleGenerate}
-                  disabled={!jobUrl || generating}
+                  disabled={!email || generating || !email.includes('@')}
                   className="flex-1"
                 >
                   {generating ? 'Generating...' : 'Generate Cover Letter'}
@@ -273,8 +335,8 @@ export default function GeneratePage() {
           </Card>
         )}
 
-        {/* Step 3: Generated Letter */}
-        {step === 3 && generatedLetter && (
+        {/* Step 4: Generated Letter */}
+        {step === 4 && generatedLetter && (
           <Card>
             <CardHeader>
               <CardTitle>Your Generated Cover Letter</CardTitle>
