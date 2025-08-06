@@ -39,12 +39,12 @@ export async function POST(request: NextRequest) {
     const fileId = uuidv4()
     const fileExtension = file.name.split('.').pop()
     const fileName = `${fileId}.${fileExtension}`
-    const filePath = fileName // Save directly to bucket root, not in subfolder
+    const filePath = `cv-uploads/${fileName}` // Save to cv-uploads folder within cover-me bucket
 
     // Upload file to Supabase Storage
     const fileBuffer = await file.arrayBuffer()
     const { data: uploadData, error: uploadError } = await supabase.storage
-      .from('cv-uploads')
+      .from('cover-me')
       .upload(filePath, fileBuffer, {
         contentType: file.type,
         upsert: false
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
     if (insertError) {
       // If database insert fails, clean up the uploaded file
       await supabase.storage
-        .from('cv-uploads')
+        .from('cover-me')
         .remove([filePath])
       
       console.error('Database insert error:', insertError)
