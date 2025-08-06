@@ -27,12 +27,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // If we have an uploadId, update the cv_uploads record with the generated cover letter
-    if (uploadId && email) {
-      try {
-        const supabase = createServiceRoleClient()
-        await supabase
-          .from('cv_uploads')
+            // If we have an uploadId, update the cover-me record with the generated cover letter
+        if (uploadId && email) {
+          try {
+            const supabase = createServiceRoleClient()
+            await supabase
+              .from('cover-me')
           .update({
             cover_letter: result.coverLetter,
             generated_at: new Date().toISOString()

@@ -58,9 +58,9 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Insert record into cv_uploads table (RLS is disabled)
+    // Insert record into cover-me table (RLS is disabled)
     const { data: insertData, error: insertError } = await supabase
-      .from('cv_uploads')
+      .from('cover-me')
       .insert({
         id: fileId,
         email: email,
