@@ -1,0 +1,74 @@
+{
+  "title": "SmartCamp.AI",
+  "subtitle": "设计系统展示",
+  "description": "现代UI组件的综合演示，具有玻璃形态效果和响应式设计模式。",
+  
+  "elements": "元素",
+  "typography": "排版",
+  
+  "modelConfiguration": "模型配置",
+  "modelLabel": "选择模型",
+  "quantizationLabel": "量化",
+  "performanceLabel": "性能目标",
+  "tokensPerSecond": "令牌/秒",
+  
+  "demoResults": "演示结果",
+  "estimatedRAM": "预估内存",
+  "estimatedVRAM": "预估显存",
+  "recommendedGPU": "推荐GPU",
+  
+  "radioGroup": "偏好设置",
+  "radioOption1": "选项A",
+  "radioOption2": "选项B",
+  "radioOption3": "选项C",
+  
+  "dropdownLabel": "选择选项",
+  "dropdownOption1": "第一选择",
+  "dropdownOption2": "第二选择",
+  "dropdownOption3": "第三选择",
+  
+  "textareaLabel": "您的消息",
+  "textareaPlaceholder": "请在此输入您的详细消息...",
+  
+  "togglesAndChecks": "开关和复选框",
+  "enableNotifications": "启用通知",
+  "darkMode": "深色模式",
+  "acceptTerms": "接受条款",
+  "subscribe": "订阅通讯",
+  
+  "dateAndSlider": "日期和滑块",
+  "selectDate": "选择日期",
+  "dateRange": "日期范围",
+  "volumeLevel": "音量级别",
+  
+  "newsletterTitle": "保持更新",
+  "newsletterDescription": "获取SmartCamp AI的最新更新和功能",
+  "emailPlaceholder": "输入您的邮箱以获取更新",
+  "subscribeButton": "订阅",
+  "subscribing": "订阅中...",
+  
+  "footer": {
+    "copyright": "保留所有权利。",
+    "email": "hello@smartcamp.ai",
+    "phone": "+48 518 894 156"
+  },
+  
+  "typography": {
+    "heading": "排版",
+    "colors": "颜色",
+    "primaryColor": "主要",
+    "secondaryColor": "次要",
+    "accentColor": "强调",
+    "spacing": "间距",
+    "small": "小",
+    "medium": "中",
+    "large": "大",
+    "xlarge": "特大",
+    "borderRadius": "边框圆角",
+    "buttonStyles": "按钮样式",
+    "primaryButtons": "主要按钮",
+    "outlineButtons": "轮廓按钮",
+    "primaryVariant": "variant=\"jungle\" | 丛林背景",
+    "outlineVariant": "variant=\"outline\" | 透明带边框"
+  }
+}

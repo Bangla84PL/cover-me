@@ -1,0 +1,74 @@
+{
+  "title": "SmartCamp.AI",
+  "subtitle": "Prezentacja Systemu Projektowego",
+  "description": "Kompleksowa demonstracja nowoczesnych komponentów UI z efektami glassmorphism i responsywnymi wzorcami projektowymi.",
+  
+  "elements": "Elementy",
+  "typography": "Typografia",
+  
+  "modelConfiguration": "Konfiguracja Modelu",
+  "modelLabel": "Wybierz Model",
+  "quantizationLabel": "Kwantyzacja",
+  "performanceLabel": "Cel Wydajności",
+  "tokensPerSecond": "tokenów/sekundę",
+  
+  "demoResults": "Wyniki Demo",
+  "estimatedRAM": "Szacowana RAM",
+  "estimatedVRAM": "Szacowana VRAM",
+  "recommendedGPU": "Zalecane GPU",
+  
+  "radioGroup": "Preferencje",
+  "radioOption1": "Opcja A",
+  "radioOption2": "Opcja B",
+  "radioOption3": "Opcja C",
+  
+  "dropdownLabel": "Wybierz Opcję",
+  "dropdownOption1": "Pierwszy Wybór",
+  "dropdownOption2": "Drugi Wybór",
+  "dropdownOption3": "Trzeci Wybór",
+  
+  "textareaLabel": "Twoja Wiadomość",
+  "textareaPlaceholder": "Wprowadź tutaj swoją szczegółową wiadomość...",
+  
+  "togglesAndChecks": "Przełączniki i Zaznaczenia",
+  "enableNotifications": "Włącz Powiadomienia",
+  "darkMode": "Tryb Ciemny",
+  "acceptTerms": "Akceptuj Warunki",
+  "subscribe": "Zapisz się do Newslettera",
+  
+  "dateAndSlider": "Data i Suwak",
+  "selectDate": "Wybierz Datę",
+  "dateRange": "Zakres Dat",
+  "volumeLevel": "Poziom Głośności",
+  
+  "newsletterTitle": "Bądź na Bieżąco",
+  "newsletterDescription": "Otrzymuj najnowsze aktualizacje i funkcje SmartCamp AI",
+  "emailPlaceholder": "Wprowadź swój email dla aktualizacji",
+  "subscribeButton": "Zapisz się",
+  "subscribing": "Zapisywanie...",
+  
+  "footer": {
+    "copyright": "Wszelkie prawa zastrzeżone.",
+    "email": "hello@smartcamp.ai",
+    "phone": "+48 518 894 156"
+  },
+  
+  "typography": {
+    "heading": "Typografia",
+    "colors": "Kolory",
+    "primaryColor": "Podstawowy",
+    "secondaryColor": "Drugorzędny",
+    "accentColor": "Akcentowy",
+    "spacing": "Odstępy",
+    "small": "Mały",
+    "medium": "Średni",
+    "large": "Duży",
+    "xlarge": "Bardzo Duży",
+    "borderRadius": "Zaokrąglenie Krawędzi",
+    "buttonStyles": "Style Przycisków",
+    "primaryButtons": "Główne Przyciski",
+    "outlineButtons": "Przyciski Obramowane",
+    "primaryVariant": "variant=\"jungle\" | tło dżungli",
+    "outlineVariant": "variant=\"outline\" | przezroczyste z obramowaniem"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "title": "SmartCamp.AI",
+  "subtitle": "Demostración del Sistema de Diseño",
+  "description": "Una demostración integral de componentes de interfaz modernos con efectos glassmorphism y patrones de diseño responsivos.",
+  
+  "elements": "Elementos",
+  "typography": "Tipografía",
+  
+  "modelConfiguration": "Configuración del Modelo",
+  "modelLabel": "Seleccionar Modelo",
+  "quantizationLabel": "Cuantización",
+  "performanceLabel": "Objetivo de Rendimiento",
+  "tokensPerSecond": "tokens/segundo",
+  
+  "demoResults": "Resultados de Demostración",
+  "estimatedRAM": "RAM Estimada",
+  "estimatedVRAM": "VRAM Estimada",
+  "recommendedGPU": "GPU Recomendada",
+  
+  "radioGroup": "Preferencias",
+  "radioOption1": "Opción A",
+  "radioOption2": "Opción B",
+  "radioOption3": "Opción C",
+  
+  "dropdownLabel": "Seleccionar Opción",
+  "dropdownOption1": "Primera Opción",
+  "dropdownOption2": "Segunda Opción",
+  "dropdownOption3": "Tercera Opción",
+  
+  "textareaLabel": "Tu Mensaje",
+  "textareaPlaceholder": "Ingresa tu mensaje detallado aquí...",
+  
+  "togglesAndChecks": "Interruptores y Casillas",
+  "enableNotifications": "Habilitar Notificaciones",
+  "darkMode": "Modo Oscuro",
+  "acceptTerms": "Aceptar Términos",
+  "subscribe": "Suscribirse al Boletín",
+  
+  "dateAndSlider": "Fecha y Deslizador",
+  "selectDate": "Seleccionar Fecha",
+  "dateRange": "Rango de Fechas",
+  "volumeLevel": "Nivel de Volumen",
+  
+  "newsletterTitle": "Mantente Actualizado",
+  "newsletterDescription": "Recibe las últimas actualizaciones y características de SmartCamp AI",
+  "emailPlaceholder": "Ingresa tu email para actualizaciones",
+  "subscribeButton": "Suscribirse",
+  "subscribing": "Suscribiendo...",
+  
+  "footer": {
+    "copyright": "Todos los derechos reservados.",
+    "email": "hello@smartcamp.ai",
+    "phone": "+48 518 894 156"
+  },
+  
+  "typography": {
+    "heading": "Tipografía",
+    "colors": "Colores",
+    "primaryColor": "Primario",
+    "secondaryColor": "Secundario",
+    "accentColor": "Acento",
+    "spacing": "Espaciado",
+    "small": "Pequeño",
+    "medium": "Mediano",
+    "large": "Grande",
+    "xlarge": "Extra Grande",
+    "borderRadius": "Radio del Borde",
+    "buttonStyles": "Estilos de Botones",
+    "primaryButtons": "Botones Primarios",
+    "outlineButtons": "Botones de Contorno",
+    "primaryVariant": "variant=\"jungle\" | fondo de selva",
+    "outlineVariant": "variant=\"outline\" | transparente con borde"
+  }
+}
