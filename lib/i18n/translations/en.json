@@ -1,0 +1,74 @@
+{
+  "title": "SmartCamp.AI",
+  "subtitle": "Design System Showcase",
+  "description": "A comprehensive demonstration of modern UI components with glassmorphism effects and responsive design patterns.",
+  
+  "elements": "Elements",
+  "typography": "Typography",
+  
+  "modelConfiguration": "Model Configuration",
+  "modelLabel": "Select Model",
+  "quantizationLabel": "Quantization",
+  "performanceLabel": "Performance Target",
+  "tokensPerSecond": "tokens/second",
+  
+  "demoResults": "Demo Results",
+  "estimatedRAM": "Estimated RAM",
+  "estimatedVRAM": "Estimated VRAM",
+  "recommendedGPU": "Recommended GPU",
+  
+  "radioGroup": "Preferences",
+  "radioOption1": "Option A",
+  "radioOption2": "Option B", 
+  "radioOption3": "Option C",
+  
+  "dropdownLabel": "Select Option",
+  "dropdownOption1": "First Choice",
+  "dropdownOption2": "Second Choice",
+  "dropdownOption3": "Third Choice",
+  
+  "textareaLabel": "Your Message",
+  "textareaPlaceholder": "Enter your detailed message here...",
+  
+  "togglesAndChecks": "Toggles & Checks",
+  "enableNotifications": "Enable Notifications",
+  "darkMode": "Dark Mode",
+  "acceptTerms": "Accept Terms",
+  "subscribe": "Subscribe to Newsletter",
+  
+  "dateAndSlider": "Date & Slider",
+  "selectDate": "Select Date",
+  "dateRange": "Date Range",
+  "volumeLevel": "Volume Level",
+  
+  "newsletterTitle": "Stay Updated",
+  "newsletterDescription": "Get the latest SmartCamp AI updates and features",
+  "emailPlaceholder": "Enter your email for updates",
+  "subscribeButton": "Subscribe",
+  "subscribing": "Subscribing...",
+  
+  "footer": {
+    "copyright": "All rights reserved.",
+    "email": "hello@smartcamp.ai",
+    "phone": "+48 518 894 156"
+  },
+  
+  "typography": {
+    "heading": "Typography",
+    "colors": "Colors",
+    "primaryColor": "Primary",
+    "secondaryColor": "Secondary", 
+    "accentColor": "Accent",
+    "spacing": "Spacing",
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large",
+    "xlarge": "Extra Large",
+    "borderRadius": "Border Radius",
+    "buttonStyles": "Button Styles",
+    "primaryButtons": "Primary Buttons",
+    "outlineButtons": "Outline Buttons",
+    "primaryVariant": "variant=\"jungle\" | jungle background",
+    "outlineVariant": "variant=\"outline\" | transparent with border"
+  }
+}
