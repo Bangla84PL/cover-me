@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     const fileId = uuidv4()
     const fileExtension = file.name.split('.').pop()
     const fileName = `${fileId}.${fileExtension}`
-    const filePath = `cv-uploads/${fileName}`
+    const filePath = fileName // Save directly to bucket root, not in subfolder
 
     // Upload file to Supabase Storage
     const fileBuffer = await file.arrayBuffer()
@@ -58,8 +58,36 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Since RLS is disabled, we'll just return success without database insert for now
-    console.log('File uploaded successfully:', {
+    // Insert record into cv_uploads table (RLS is disabled)
+    const { data: insertData, error: insertError } = await supabase
+      .from('cv_uploads')
+      .insert({
+        id: fileId,
+        email: email,
+        job_url: jobUrl,
+        file_name: file.name,
+        file_path: filePath,
+        file_size: file.size,
+        file_type: file.type,
+        uploaded_at: new Date().toISOString()
+      })
+      .select()
+      .single()
+
+    if (insertError) {
+      // If database insert fails, clean up the uploaded file
+      await supabase.storage
+        .from('cv-uploads')
+        .remove([filePath])
+      
+      console.error('Database insert error:', insertError)
+      return NextResponse.json(
+        { error: 'Failed to save upload record to database' },
+        { status: 500 }
+      )
+    }
+
+    console.log('File and record saved successfully:', {
       fileId,
       email,
       jobUrl,
@@ -73,7 +101,7 @@ export async function POST(request: NextRequest) {
       fileId: fileId,
       filePath: filePath,
       fileName: file.name,
-      message: 'File uploaded successfully to Supabase storage'
+      message: 'File uploaded and record saved successfully'
     })
   } catch (error) {
     console.error('CV upload error:', error)
