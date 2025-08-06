@@ -202,7 +202,7 @@ Thank you for using our service!`)
 
   if (step === 'form') {
     return (
-      <div className="min-h-screen py-8 relative">
+      <div className="min-h-screen py-6 relative">
         {/* Jungle Background */}
         <div 
           className="fixed inset-0 z-0"
@@ -218,19 +218,19 @@ Thank you for using our service!`)
 
         <div className="relative z-10 container mx-auto px-4 max-w-2xl">
           {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-white mb-4">Generate Your Cover Letter</h1>
-            <p className="text-white/80 text-lg">Fill in your details to get started</p>
+          <div className="text-center mb-6">
+            <h1 className="text-3xl font-bold text-white mb-3">Generate Your Cover Letter</h1>
+            <p className="text-white/80">Fill in your details to get started</p>
           </div>
 
           <div className="rounded-lg border border-white/20 shadow-sm bg-white/15 backdrop-blur" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15) !important' }}>
-            <div className="flex flex-col space-y-1.5 p-6">
-              <h3 className="text-2xl font-semibold leading-none tracking-tight text-white">Your Information</h3>
+            <div className="flex flex-col space-y-1.5 p-4">
+              <h3 className="text-xl font-semibold leading-none tracking-tight text-white">Your Information</h3>
               <p className="text-sm text-white/70">We need your email, CV, and the job you're applying for</p>
             </div>
-            <div className="p-6 pt-0 space-y-6">
+            <div className="p-4 pt-0 space-y-4">
               {/* Email Field */}
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <label className="text-sm font-medium text-white">Email Address *</label>
                 <Input
                   id="email"
@@ -243,7 +243,7 @@ Thank you for using our service!`)
               </div>
 
               {/* Job URL Field */}
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <label className="text-sm font-medium text-white">Job Posting URL *</label>
                 <Input
                   id="job-url"
@@ -256,7 +256,7 @@ Thank you for using our service!`)
               </div>
 
               {/* CV Upload Field */}
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <label className="text-sm font-medium text-white">Upload Your CV *</label>
                 <Input
                   id="cv-upload"
@@ -277,7 +277,7 @@ Thank you for using our service!`)
               </div>
 
               {/* Language Selector */}
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <label className="text-sm font-medium text-white">Cover Letter Language *</label>
                 <Select
                   id="language"
@@ -299,7 +299,7 @@ Thank you for using our service!`)
               )}
 
               {/* Action Buttons */}
-              <div className="flex space-x-4">
+              <div className="flex space-x-3 pt-2">
                 <button
                   onClick={() => setStep('hero')}
                   className="flex-1 px-4 py-2 border border-white/30 rounded-md text-white text-sm font-medium transition-all duration-200 hover:border-white/50 hover:bg-white/10"
