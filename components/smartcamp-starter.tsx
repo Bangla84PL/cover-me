@@ -71,18 +71,18 @@ export default function SmartCampStarter() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Column 1: Elements - Interactive UI Components */}
-        <div className="rounded-lg border border-white/20 shadow-sm bg-white/15 backdrop-blur" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15) !important' }}>
-          <div className="flex flex-col space-y-1.5 p-6">
+        <div className="rounded-lg border border-white/20 shadow-sm bg-white/15 backdrop-blur">
+          <div className="flex flex-col space-y-1.5 p-6 border-b border-white/10">
             <h3 className="text-2xl font-semibold leading-none tracking-tight text-white">{t('elements')}</h3>
             <p className="text-sm text-white/70">Interactive UI components from our design system</p>
           </div>
-          <div className="p-6 pt-0 space-y-6">
+          <div className="p-6 space-y-6">
             {/* Dropdown/Select Menus */}
             <div className="space-y-4">
               <h3 className="text-base font-semibold text-white border-b border-white/20 pb-2">Dropdown & Select</h3>
-              
+
               <div className="space-y-2">
-                <label className="text-sm font-medium">{t('modelLabel')}</label>
+                <label className="text-sm font-medium text-white/90">{t('modelLabel')}</label>
                 <Select
                   value={modelId}
                   onChange={(e) => setModelId(e.target.value)}
@@ -97,7 +97,7 @@ export default function SmartCampStarter() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Additional Features</label>
+                <label className="text-sm font-medium text-white/90">Additional Features</label>
                 <Select
                   value=""
                   onChange={() => {}}
@@ -116,7 +116,7 @@ export default function SmartCampStarter() {
               <h3 className="text-base font-semibold text-white border-b border-white/20 pb-2">Radio Buttons</h3>
               
               <div className="space-y-3">
-                <label className="text-sm font-medium">Deployment Type</label>
+                <label className="text-sm font-medium text-white/90">Deployment Type</label>
                 <RadioGroup
                   options={DEMO_DEPLOYMENT_OPTIONS}
                   value={deploymentType}
@@ -126,7 +126,7 @@ export default function SmartCampStarter() {
               </div>
 
               <div className="space-y-3">
-                <label className="text-sm font-medium">Optimization Priority</label>
+                <label className="text-sm font-medium text-white/90">Optimization Priority</label>
                 <RadioGroup
                   options={DEMO_PRIORITY_OPTIONS}
                   value={priority}
@@ -139,9 +139,9 @@ export default function SmartCampStarter() {
             {/* Text Inputs */}
             <div className="space-y-4">
               <h3 className="text-base font-semibold text-white border-b border-white/20 pb-2">Text Inputs</h3>
-              
+
               <div className="space-y-2">
-                <label className="text-sm font-medium">Budget (USD)</label>
+                <label className="text-sm font-medium text-white/90">Budget (USD)</label>
                 <Input
                   type="number"
                   placeholder="Enter your budget"
@@ -153,7 +153,7 @@ export default function SmartCampStarter() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Email Address</label>
+                <label className="text-sm font-medium text-white/90">Email Address</label>
                 <Input
                   type="email"
                   placeholder="Enter your email address"
@@ -163,7 +163,7 @@ export default function SmartCampStarter() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Project Description</label>
+                <label className="text-sm font-medium text-white/90">Project Description</label>
                 <Textarea
                   placeholder="Describe your project goals and requirements..."
                   value={projectDescription}
@@ -178,7 +178,7 @@ export default function SmartCampStarter() {
               <h3 className="text-base font-semibold text-white border-b border-white/20 pb-2">Range Sliders</h3>
               
               <div className="space-y-3">
-                <label className="text-sm font-medium">
+                <label className="text-sm font-medium text-white/90">
                   Performance Target: {targetTokensPerSecond[0]} tokens/second
                 </label>
                 <Slider
@@ -189,14 +189,14 @@ export default function SmartCampStarter() {
                   step={1}
                   className="w-full"
                 />
-                <div className="flex justify-between text-xs text-muted-foreground">
+                <div className="flex justify-between text-xs text-white/60">
                   <span>5 tokens/sec</span>
                   <span>50 tokens/sec</span>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <label className="text-sm font-medium">
+                <label className="text-sm font-medium text-white/90">
                   Memory Limit: {memoryLimit[0]} GB
                 </label>
                 <Slider
@@ -207,7 +207,7 @@ export default function SmartCampStarter() {
                   step={2}
                   className="w-full"
                 />
-                <div className="flex justify-between text-xs text-muted-foreground">
+                <div className="flex justify-between text-xs text-white/60">
                   <span>4 GB</span>
                   <span>64 GB</span>
                 </div>
@@ -219,7 +219,7 @@ export default function SmartCampStarter() {
               <h3 className="text-base font-semibold text-white border-b border-white/20 pb-2">Date Pickers</h3>
               
               <div className="space-y-2">
-                <label className="text-sm font-medium">Project Start Date</label>
+                <label className="text-sm font-medium text-white/90">Project Start Date</label>
                 <DatePicker
                   value={projectStartDate}
                   onChange={setProjectStartDate}
@@ -228,7 +228,7 @@ export default function SmartCampStarter() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Analysis Period</label>
+                <label className="text-sm font-medium text-white/90">Analysis Period</label>
                 <DateRangePicker
                   startDate={startDate}
                   endDate={endDate}
@@ -274,12 +274,12 @@ export default function SmartCampStarter() {
         </div>
 
         {/* Column 2: Typography */}
-        <div className="rounded-lg border border-white/20 shadow-sm bg-white/15 backdrop-blur" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15) !important' }}>
-          <div className="flex flex-col space-y-1.5 p-6">
+        <div className="rounded-lg border border-white/20 shadow-sm bg-white/15 backdrop-blur">
+          <div className="flex flex-col space-y-1.5 p-6 border-b border-white/10">
             <h3 className="text-2xl font-semibold leading-none tracking-tight text-white">Typography</h3>
             <p className="text-sm text-white/70">Design system typography and colors</p>
           </div>
-          <div className="p-6 pt-0 space-y-6">
+          <div className="p-6 space-y-6">
             {/* Typography Scale */}
             <div className="space-y-4">
               <h3 className="text-base font-semibold text-white border-b border-white/20 pb-2">Typography Scale</h3>
@@ -373,29 +373,26 @@ export default function SmartCampStarter() {
                 <div>
                   <p className="text-sm text-white/80 mb-3">Primary Buttons</p>
                   <div className="flex flex-wrap gap-3">
-                    <div className="px-3 py-1 rounded-md text-white text-xs font-medium border border-white/30 relative overflow-hidden" style={{ backgroundImage: "url('/jungle background.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
-                      <div className="absolute inset-0 bg-black/40 rounded-md"></div>
-                      <span className="relative z-10">Small</span>
+                    <div className="px-3 py-1 rounded-md text-white text-xs font-medium border border-white/30 bg-emerald-600 hover:bg-emerald-700 transition-colors">
+                      Small
                     </div>
-                    <div className="px-4 py-2 rounded-md text-white text-sm font-medium border border-white/30 relative overflow-hidden" style={{ backgroundImage: "url('/jungle background.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
-                      <div className="absolute inset-0 bg-black/40 rounded-md"></div>
-                      <span className="relative z-10">Medium</span>
+                    <div className="px-4 py-2 rounded-md text-white text-sm font-medium border border-white/30 bg-emerald-600 hover:bg-emerald-700 transition-colors">
+                      Medium
                     </div>
-                    <div className="px-6 py-3 rounded-md text-white text-base font-medium border border-white/30 relative overflow-hidden" style={{ backgroundImage: "url('/jungle background.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
-                      <div className="absolute inset-0 bg-black/40 rounded-md"></div>
-                      <span className="relative z-10">Large</span>
+                    <div className="px-6 py-3 rounded-md text-white text-base font-medium border border-white/30 bg-emerald-600 hover:bg-emerald-700 transition-colors">
+                      Large
                     </div>
                   </div>
-                  <p className="text-xs text-white/60 mt-2">variant=&quot;jungle&quot; | jungle background</p>
+                  <p className="text-xs text-white/60 mt-2">variant=&quot;jungle&quot; | emerald primary color</p>
                 </div>
                 
                 <div>
                   <p className="text-sm text-white/80 mb-3">Outline Buttons</p>
                   <div className="flex flex-wrap gap-3">
-                    <div className="px-4 py-2 border border-white/30 rounded-md text-white text-sm font-medium">
+                    <div className="px-4 py-2 border border-white/30 rounded-md text-white text-sm font-medium hover:bg-white/10 transition-colors">
                       Default
                     </div>
-                    <div className="px-4 py-2 border border-emerald-400/50 rounded-md text-emerald-300 text-sm font-medium">
+                    <div className="px-4 py-2 border border-emerald-400/50 rounded-md text-emerald-300 text-sm font-medium hover:bg-emerald-500/10 transition-colors">
                       Accent
                     </div>
                   </div>
@@ -405,10 +402,10 @@ export default function SmartCampStarter() {
                 <div>
                   <p className="text-sm text-white/80 mb-3">Secondary & States</p>
                   <div className="flex flex-wrap gap-3">
-                    <div className="px-4 py-2 bg-blue-600 rounded-md text-white text-sm font-medium">
+                    <div className="px-4 py-2 bg-blue-600 rounded-md text-white text-sm font-medium hover:bg-blue-700 transition-colors">
                       Secondary
                     </div>
-                    <div className="px-4 py-2 bg-white/20 rounded-md text-white/50 text-sm font-medium">
+                    <div className="px-4 py-2 bg-white/20 rounded-md text-white/50 text-sm font-medium cursor-not-allowed opacity-60">
                       Disabled
                     </div>
                   </div>
