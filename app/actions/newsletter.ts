@@ -15,7 +15,7 @@ export async function subscribeToNewsletter(email: string) {
 
     // Check if email already exists
     const { data: existingUser, error: checkError } = await supabaseServer
-      .from('Newsletter-signup')
+      .from('coverme_newsletter_signup')
       .select('email')
       .eq('email', email)
       .single()
@@ -37,11 +37,11 @@ export async function subscribeToNewsletter(email: string) {
 
     // Insert new subscriber
     const { data, error } = await supabaseServer
-      .from('Newsletter-signup')
+      .from('coverme_newsletter_signup')
       .insert([
         {
           email: email.toLowerCase().trim(),
-          source: 'starter',
+          source: 'cover-me',
           created_at: new Date().toISOString()
         }
       ])
