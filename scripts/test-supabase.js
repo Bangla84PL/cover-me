@@ -22,28 +22,28 @@ async function testConnection() {
     // Test basic connection
     console.log('\n1. Testing basic connection...')
     const { data, error } = await supabase
-      .from('newsletter-signup')
+      .from('coverme_newsletter_signup')
       .select('*')
       .limit(1)
 
     if (error) {
       console.error('Connection test failed:', error.message)
-      
+
       // Check if table exists
       if (error.code === '42P01' || error.message.includes('does not exist')) {
-        console.log('\n2. Table "newsletter-signup" does not exist.')
+        console.log('\n2. Table "coverme_newsletter_signup" does not exist.')
         console.log('Please create the table in your Supabase dashboard with this SQL:')
         console.log(`
-CREATE TABLE "newsletter-signup" (
+CREATE TABLE "coverme_newsletter_signup" (
   id SERIAL PRIMARY KEY,
   email VARCHAR(255) UNIQUE NOT NULL,
-  source VARCHAR(100) DEFAULT 'starter',
+  source VARCHAR(100) DEFAULT 'cover-me',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 -- Create index on email for faster lookups
-CREATE INDEX idx_newsletter_email ON "newsletter-signup"(email);
+CREATE INDEX idx_coverme_newsletter_email ON "coverme_newsletter_signup"(email);
         `)
         return
       }
@@ -55,13 +55,13 @@ CREATE INDEX idx_newsletter_email ON "newsletter-signup"(email);
     // Test insert operation
     console.log('\n3. Testing insert operation...')
     const testEmail = `test-${Date.now()}@example.com`
-    
+
     const { data: insertData, error: insertError } = await supabase
-      .from('newsletter-signup')
+      .from('coverme_newsletter_signup')
       .insert([
         {
           email: testEmail,
-          source: 'starter'
+          source: 'cover-me'
         }
       ])
       .select()
@@ -71,13 +71,13 @@ CREATE INDEX idx_newsletter_email ON "newsletter-signup"(email);
     } else {
       console.log('✅ Insert test successful!')
       console.log('Inserted data:', insertData)
-      
+
       // Clean up test data
       await supabase
-        .from('newsletter-signup')
+        .from('coverme_newsletter_signup')
         .delete()
         .eq('email', testEmail)
-      
+
       console.log('🧹 Test data cleaned up')
     }
 
