@@ -27,13 +27,13 @@ Based on the credentials you provided, your `.env.local` should contain:
 
 ```env
 # Supabase URL (your VPS instance)
-NEXT_PUBLIC_SUPABASE_URL=https://api.supabase.smartcamp.ai
+NEXT_PUBLIC_SUPABASE_URL=https://your-supabase-url.example.com
 
 # Supabase Anonymous Key (Public)
-NEXT_PUBLIC_SUPABASE_ANON_KEY=***REDACTED_SUPABASE_ANON_KEY***
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
 
 # Supabase Service Role Key (Private - server-side only)
-SUPABASE_SERVICE_ROLE_KEY=***REDACTED_SUPABASE_SERVICE_KEY***
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
 ```
 
 **Important:** Make sure `.env.local` is in your `.gitignore` file (it should be by default in Next.js projects).
